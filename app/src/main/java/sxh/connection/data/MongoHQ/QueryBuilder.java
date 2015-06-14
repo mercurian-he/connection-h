@@ -4,18 +4,10 @@ import sxh.connection.data.MyContact;
 
 public class QueryBuilder {
 	
-	/**
-	 * Specify your database name here
-	 * @return
-	 */
 	public String getDatabaseName() {
 		return "hci_connection";
 	}
 
-	/**
-	 * Specify your MongoLab API here
-	 * @return
-	 */
 	public String getApiKey() {
 		return "gaxTO-7B0dmSkEV3wtNsqFWGB1jVjnhi";
 	}

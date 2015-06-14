@@ -22,7 +22,8 @@ public class SaveAsyncTask extends AsyncTask<MyContact, Void, Boolean> {
 			HttpClient httpClient = new DefaultHttpClient();
 	        HttpPost request = new HttpPost(qb.buildContactsSaveURL());
 
-	        StringEntity params =new StringEntity(qb.createContact(contact));
+	        // StringEntity params =new StringEntity(qb.createContact(contact));
+			StringEntity params =new StringEntity("{\"hi\" : \"hi\"}");
 	        request.addHeader("content-type", "application/json");
 	        request.setEntity(params);
 	        HttpResponse response = httpClient.execute(request);
