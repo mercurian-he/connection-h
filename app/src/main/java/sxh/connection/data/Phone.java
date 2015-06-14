@@ -3,8 +3,8 @@ package sxh.connection.data;
 import org.bson.Document;
 
 public class Phone {
-	String description;
-	public String number;
+	private String description;
+	private String number;
 
 	public Phone(String description, String number) {
 		this.description = description;
