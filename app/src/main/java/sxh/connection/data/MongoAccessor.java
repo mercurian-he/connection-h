@@ -1,7 +1,7 @@
 package sxh.connection.data;
 
 import java.net.UnknownHostException;
-
+import java.util.ArrayList;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -35,14 +35,14 @@ public class MongoAccessor implements DataAccessor {
 		UserInfo res = new UserInfo(doc);
 		return res;
 	}
-	
+
 	@Override
 	public boolean delete_user(String id) {
-		// TODO
+		MongoCollection<Document> users = get_users();
+		users.find(eq("_id", id));
 		return true;
 	}
 
-	@SuppressWarnings("unused")
 	private static void test_card() {
 		CardInfo ci = new CardInfo();
 		ci.set_name("Chad2");
@@ -59,7 +59,8 @@ public class MongoAccessor implements DataAccessor {
 	public static void main(String[] args) throws UnknownHostException {
 		// MongoAccessor().get_name_card("555004aa6d336dc5ae824300")._print();
 		// new MongoAccessor().verify_user("chadx@sjtu", "PASSWORD")._print();
-		new MongoAccessor().verify_user("hi@sjtu", "PASSWORD")._print();
+		test_card();
+		// new MongoAccessor().verify_user("hi@sjtu", "PASSWORD")._print();
 	}
 
 	private static MongoCollection<Document> get_cards() {
@@ -87,9 +88,19 @@ public class MongoAccessor implements DataAccessor {
 		Document doc = c.toDoc();
 		doc.remove("_id");
 		MongoCollection<Document> cards = get_cards();
+		MongoCollection<Document> users = get_users();
 		cards.insertOne(doc);
 		Document new_doc = cards.find(doc).first();
-		return new_doc.get("_id").toString();
+		String card_id = new_doc.get("_id").toString();
+		Document target_user = users.find(eq("_id", user_id)).first();
+		target_user = new UserInfo(target_user).add_my_cards(card_id).toDoc();
+		users.findOneAndUpdate(eq("_id", card_id), target_user);
+		return card_id;
+	}
+
+	@Override
+	public String add_name_card(UserInfo u, CardInfo c) {
+		return add_name_card(u.get_id(), c);
 	}
 
 	@Override
@@ -107,13 +118,62 @@ public class MongoAccessor implements DataAccessor {
 
 	@Override
 	public boolean set_user_info(UserInfo u) {
+		get_cards().findOneAndUpdate(eq("_id", new ObjectId(u.get_id())),
+				u.toDoc());
+		return false;
+	}
+
+	@Override
+	public boolean delete_name_card_in_my_card(String user_id, String card_id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public String add_name_card(UserInfo u, CardInfo c) {
+	public boolean delete_name_card_in_card_case(String user_id, String card_id) {
 		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public CardInfo get_card_by_phone_number(String phone_number) {
+		MongoCollection<Document> cards = get_cards();
+		ArrayList<Document> foundDocument = cards.find(
+				eq("e", phone_number.toLowerCase())).into(
+				new ArrayList<Document>());
+		ArrayList<CardInfo> result = new ArrayList<CardInfo>();
+		for (Document iter : foundDocument) {
+			result.add(new CardInfo(iter));
+		}
+		return null;
+	}
+
+	@Override
+	public ArrayList<CardInfo> get_cards_by_name(String user_id, String name) {
+		UserInfo user = new UserInfo(get_users().find(
+				eq("_id", new ObjectId(user_id))).first());
+		ArrayList<String> card_case = user.get_card_case();
+		MongoCollection<Document> cards = get_cards();
+		ArrayList<CardInfo> result = new ArrayList<CardInfo>();
+
+		for (String card_id : card_case) {
+			Document doc = cards.find(eq("_id", new ObjectId(card_id))).first();
+			CardInfo iter = new CardInfo(doc);
+			if (name.equals(iter.get_name())) {
+				result.add(iter);
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public ArrayList<CardInfo> get_cards_by_phone_number(String user_id,
+			String phone_number) {
+		return null;
+	}
+
+	@Override
+	public ArrayList<CardInfo> get_cards_by_email(String user_id, String email) {
 		return null;
 	}
 

@@ -15,14 +15,10 @@ public class CardInfo {
 	private String email;
 
 	private String address;
-	private Date birthday; // yyyy-MM-dd
-/**
- * need to add
- *  private Memorial<description & date>
- *  private OtherInfo<description & value>
- *
- */
+	private String corporation;
+	private String post;
 
+	private Date birthday; // yyyy-MM-dd
 
 	public String get_id() {
 		return _id;
@@ -72,6 +68,22 @@ public class CardInfo {
 		this.email = email;
 	}
 
+	public String get_corporation() {
+		return corporation;
+	}
+
+	public void set_corporation(String corporation) {
+		this.corporation = corporation;
+	}
+
+	public String get_post() {
+		return post;
+	}
+
+	public void set_post(String post) {
+		this.post = post;
+	}
+
 	public String get_address() {
 		return address;
 	}
@@ -108,6 +120,8 @@ public class CardInfo {
 
 		System.out.println("email\t" + email);
 		System.out.println("address\t" + address);
+		System.out.println("corporation\t" + corporation);
+		System.out.println("post\t" + post);
 		System.out.println("birthday\t" + birthday);
 	}
 
@@ -133,6 +147,8 @@ public class CardInfo {
 
 		this.email = doc.get("e").toString();
 		this.address = doc.get("a").toString();
+		this.corporation = doc.get("c").toString();
+		this.post = doc.get("t").toString();
 		this.birthday = (Date) doc.get("b");
 	}
 
@@ -158,6 +174,8 @@ public class CardInfo {
 
 		doc.put("e", email);
 		doc.put("a", address);
+		doc.put("c", corporation);
+		doc.put("t", post);
 		doc.put("b", birthday);
 		return doc;
 	}
@@ -170,6 +188,8 @@ public class CardInfo {
 		sns_accounts = new ArrayList<SNS>();
 		email = "";
 		address = "";
+		corporation = "";
+		post = "";
 		birthday = new Date();
 	}
 

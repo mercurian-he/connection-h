@@ -8,7 +8,7 @@ public enum SettingDescription {
 
     private final String setting;
 
-    SettingDescription(final String setting){this.setting = setting;}
+    private SettingDescription(final String setting){this.setting = setting;}
 
     @Override
     public String toString(){

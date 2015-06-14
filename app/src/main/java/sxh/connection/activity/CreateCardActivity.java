@@ -34,12 +34,12 @@ public class CreateCardActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        items.add("ÐÕÃû");
-        items.add("ÒÆ¶¯µç»°");
+        items.add("ï¿½ï¿½ï¿½ï¿½");
+        items.add("ï¿½Æ¶ï¿½ï¿½ç»°");
         items.add("E-mail");
         items.add("Ö°Òµ");
-        items.add("¹«Ë¾");
-        items.add("¼ÒÍ¥×¡Ö·");
+        items.add("ï¿½ï¿½Ë¾");
+        items.add("ï¿½ï¿½Í¥×¡Ö·");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_card);
@@ -57,7 +57,7 @@ public class CreateCardActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 @SuppressWarnings("unchecked")
-                //»ñÈ¡±»µã»÷µÄitemËù¶ÔÓ¦µÄÊý¾Ý
+                //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½itemï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         HashMap<String,Object> map = (HashMap<String, Object>) parent.getItemAtPosition(position);
 
             }
@@ -109,11 +109,11 @@ public class CreateCardActivity extends Activity {
     public void add(View view) {
 
             final EditText et=new EditText(this);
-            //ÉèÖÃÓÃ»§ÃÜÂëµÄ·½·¨
-            new AlertDialog.Builder(this).setTitle("ÐÂÏîÄ¿").setView(
-                    et).setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½
+            new AlertDialog.Builder(this).setTitle("ï¿½ï¿½ï¿½ï¿½Ä¿").setView(
+                    et).setPositiveButton("È·ï¿½ï¿½", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    // µã»÷È·¶¨°´Å¥ºóµÃµ½ÊäÈëµÄÖµ£¬±£´æ
+                    // ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     String str = et.getText().toString();
                     items.add(str);
                     Map map = new HashMap<String,Object>();
@@ -126,7 +126,7 @@ public class CreateCardActivity extends Activity {
                 }
             })
 
-                    .setNegativeButton("È¡Ïû", null).show();
+                    .setNegativeButton("È¡ï¿½ï¿½", null).show();
 
 
     }
@@ -152,7 +152,7 @@ public class CreateCardActivity extends Activity {
 
         fa.create_card();
         fa.set_card_name(result.get(0));
-        fa.add_card_phone_number("ÒÆ¶¯µç»°", result.get(1));
+        fa.add_card_phone_number("ï¿½Æ¶ï¿½ï¿½ç»°", result.get(1));
         fa.set_card_email(result.get(2));
         fa.set_card_address((result.get(5)));
         fa.modify_edited_card();

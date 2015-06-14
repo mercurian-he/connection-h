@@ -3,8 +3,8 @@ package sxh.connection.data;
 import org.bson.Document;
 
 public class SNS {
-	String description;
-	String name;
+	private String description;
+	private String name;
 
 	public SNS(String description, String name) {
 		this.description = description;
