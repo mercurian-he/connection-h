@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/sxh/connection/activity/LoginActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/sxh/connection/data/DataAccessor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/sxh/connection/data/HttpAccessor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/sxh/connection/data/MongoHQ/QueryBuilder.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/sxh/connection/data/MongoHQ/SaveAsyncTask.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/sxh/connection/data/UserInfo.java" charset="UTF-8" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>
