@@ -1,18 +1,19 @@
 package sxh.connection.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.content.Intent;
-
 
 import sxh.connection.R;
+import sxh.connection.data.DataAccessor;
+import sxh.connection.data.HttpAccessor;
 import sxh.connection.data.MongoHQ.SaveAsyncTask;
-import sxh.connection.data.MyContact;
-import sxh.connection.function.*;
+import sxh.connection.function.FunctionAccessor;
+import sxh.connection.function.FunctionImpl;
 
 
 public class LoginActivity extends Activity {
@@ -50,21 +51,17 @@ public class LoginActivity extends Activity {
      */
     private void testByChad() {
         System.out.println("init");
-        MyContact contact = new MyContact();
-        contact.first_name = "Chad";
-        contact.last_name = "Sang";
-        contact.email = "i@chadsang.me";
-        contact.phone = "15302123678";
+        DataAccessor da = new HttpAccessor();
 
         System.out.println("try");
-        SaveAsyncTask tsk = new SaveAsyncTask();
-        tsk.execute(contact);
+        da.add_user("i@chadsang.me", "mypassword");
         System.out.println("finish");
     }
 
     //called when the user pushed sign in button
     public void signIn(View view) {
         //
+        // testByChad();
         FunctionAccessor fa = new FunctionImpl();
         EditText email = (EditText) findViewById(R.id.login_email);
         EditText password = (EditText) findViewById(R.id.login_password);

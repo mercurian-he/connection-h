@@ -13,7 +13,7 @@ public enum  SNSDescription {
 
     private final String text;
 
-    SNSDescription(final String text){
+    private SNSDescription(final String text){
         this.text = text;
     }
 
