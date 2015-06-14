@@ -10,6 +10,8 @@ import android.content.Intent;
 
 
 import sxh.connection.R;
+import sxh.connection.data.MongoHQ.SaveAsyncTask;
+import sxh.connection.data.MyContact;
 import sxh.connection.function.*;
 
 
@@ -41,6 +43,23 @@ public class LoginActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * some test code by ChadSang
+     */
+    private void testByChad() {
+        System.out.println("init");
+        MyContact contact = new MyContact();
+        contact.first_name = "Chad";
+        contact.last_name = "Sang";
+        contact.email = "i@chadsang.me";
+        contact.phone = "15302123678";
+
+        System.out.println("try");
+        SaveAsyncTask tsk = new SaveAsyncTask();
+        tsk.execute(contact);
+        System.out.println("finish");
     }
 
     //called when the user pushed sign in button
